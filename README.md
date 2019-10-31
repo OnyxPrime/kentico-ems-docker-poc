@@ -6,8 +6,8 @@ This repo provides a docker-compose file configured to create a local Kentico 12
 
 ## Getting Started
 
-- Ensure Docker Desktop is setup up to run Windows containers
-- From a command-line
+- Ensure Docker Desktop is setup to run Windows containers.
+- From a command-line,
     - switch to the directory containing the cloned .yml file from above
     -  run `docker-compose up`
 - Navigate
