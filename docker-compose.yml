@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  web:
+    image: kentico/ems:web-12.0-beta
+    ports:
+      - 80:80
+    links:
+      - sql
+    depends_on:
+      - sql    
+
+  sql:
+    image: kentico/ems:db-12.0-beta
+    ports:
+      - 1433:1433
