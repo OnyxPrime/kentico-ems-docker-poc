@@ -11,8 +11,8 @@ This repo provides a docker-compose file configured to create a local Kentico 12
     - switch to the directory containing the cloned .yml file from above
     -  run `docker-compose up`
 - Navigate
-    - Dancing Goat site http://localhost/Kentico12_Admin
-    - Admin site http://localhost/Kentico12_Admin
+    - Dancing Goat site http://localhost:60051/Kentico12_Admin
+    - Admin site http://localhost:60051/Kentico12_Admin
         - username: administrator
         - password: _none_ 
 - To shutdown the environment, press CTRL + C
@@ -24,6 +24,6 @@ This solution uses 2 custom Windows based images.
 
 1. IIS image hosting the web applications with Kentico EMS installed
 2. SQL Server image with a Kentico DB.
-    - server name: localhost
+    - server name: localhost, 1435
     - username: sa
     - password: Pass@word1 

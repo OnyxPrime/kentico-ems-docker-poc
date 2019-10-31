@@ -4,7 +4,7 @@ services:
   web:
     image: kentico/ems:web-12.0-beta
     ports:
-      - 80:80
+      - 60051:80
     links:
       - sql
     depends_on:
@@ -13,4 +13,4 @@ services:
   sql:
     image: kentico/ems:db-12.0-beta
     ports:
-      - 1433:1433
+      - 1435:1433
