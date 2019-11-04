@@ -351,6 +351,8 @@ MigrationBackup/
 # Post-install file and DB updates
 update/
 
-/ems-full
-/ems-db
-/ems-web-only
+ems-full
+ems-db/*
+!ems-db/dockerfile*
+ems-web-only/*
+!ems-web-only/dockerfile

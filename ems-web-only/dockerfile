@@ -1,0 +1,54 @@
+# This image installs the Kentico EMS application and copies over files to necessary to provide
+# a fully functional Kentico EMS instance. It is designed to be used in conjunction with the
+# Docker compose file located here. https://github.com/OnyxPrime/kentico-ems-docker-poc 
+
+FROM mcr.microsoft.com/windows/servercore/iis AS base
+
+FROM base as iissite
+# Enable IIS features on image
+RUN powershell.exe Add-WindowsFeature web-server, web-webserver
+RUN powershell.exe -NoProfile -Command Remove-Item -Recurse C:\inetpub\wwwroot\*
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-CommonHttpFeatures
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpErrors
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpRedirect
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-ApplicationDevelopment
+RUN powershell.exe Enable-WindowsOptionalFeature -online -FeatureName NetFx4Extended-ASPNET45
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-NetFxExtensibility45
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-HealthAndDiagnostics
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpLogging
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-LoggingLibraries
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-RequestMonitor
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpTracing
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-Security
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-RequestFiltering
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-Performance
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerManagementTools
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-IIS6ManagementCompatibility
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-Metabase
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementConsole
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-BasicAuthentication
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-WindowsAuthentication
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-StaticContent
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-DefaultDocument
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebSockets
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-ApplicationInit
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIExtensions
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIFilter
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionStatic
+RUN powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
+
+FROM iissite AS final
+# Set working directory
+WORKDIR /kentico    
+# Copy Kentico EMS installer and installer configuration file to working directory.
+COPY Kentico_12_0.exe .
+COPY KenticoInstallationProfile.xml .
+# Run Kentico EMS installer with provided configuration file
+RUN Kentico_12_0.exe KenticoInstallationProfile.xml
+# Change working directory and copy files from a previous installation to the EMS directory. Without these files,
+# the EMS application will be a base installation without a SQL installation and user will be prompted to provide the
+# SQL server name and database name to complete the installation when trying to access the admin portal. 
+WORKDIR /inetpub
+COPY /update .
