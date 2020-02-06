@@ -17,7 +17,7 @@ This repo provides a docker-compose file configured to create a local Kentico 12
         - password: _none_ 
 - To shutdown the environment, press CTRL + C
 
-_Note: the current setup uses a trial license which expires 14 days from the docker image creation (10/25/2019). We are currently exploring options to create a new image with a year long license. Until then, a new license can be requested at https://www.kentico.com/download-demo/testversion/trial-extend._
+_Note: The current setup uses a trial license which expires 14 days from the docker image creation (10/25/2019). To obtain a new trial license key, navigate to https://www.kentico.com/download-demo/trial-license-key and fill out the form._
 
 ## Configuration
 This solution uses 2 custom Windows based images.
