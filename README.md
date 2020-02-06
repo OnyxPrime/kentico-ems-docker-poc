@@ -20,7 +20,7 @@ This repo provides a docker-compose file configured to create a local Kentico 12
 _Note: The current setup uses a trial license which expires 14 days from the docker image creation (10/25/2019). To obtain a new trial license key, navigate to https://www.kentico.com/download-demo/trial-license-key and fill out the form._
 
 ## Configuration
-This solution uses 2 custom Windows based images.
+This solution uses 2 custom Windows based images from [Docker Hub](https://hub.docker.com/r/kentico/ems)
 
 1. IIS image hosting the web applications with Kentico EMS installed
 2. SQL Server image with a Kentico DB.
