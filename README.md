@@ -11,8 +11,8 @@ This repo provides a docker-compose file configured to create a local Kentico 12
     - switch to the directory containing the cloned .yml file from above
     -  run `docker-compose up`
 - Navigate
-    - Dancing Goat site http://localhost:60051/Kentico12_Admin
-    - Admin site http://localhost:60051/Kentico12_Admin
+    - Dancing Goat site http://localhost:60051/Kentico12
+    - Admin site http://localhost:60051/Kentico12/Admin
         - username: administrator
         - password: _none_ 
 - To shutdown the environment, press CTRL + C
