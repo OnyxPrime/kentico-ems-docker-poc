@@ -2,7 +2,9 @@ version: '3.4'
 
 services:
   web:
-    image: kentico/ems:web-12.0-beta
+    #build: 
+    #    context: .\ems-web-only
+    image: kentico/ems:web-12.0.29
     ports:
       - 60051:80
     links:
@@ -11,6 +13,8 @@ services:
       - sql    
 
   sql:
-    image: kentico/ems:db-12.0-beta
+    #build: 
+    #    context: .\ems-db
+    image: kentico/ems:sql-12.0.29
     ports:
       - 1435:1433

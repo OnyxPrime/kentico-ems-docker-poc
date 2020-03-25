@@ -50,5 +50,5 @@ RUN Kentico_12_0.exe KenticoInstallationProfile.xml
 # Change working directory and copy files from a previous installation to the EMS directory. Without these files,
 # the EMS application will be a base installation without a SQL installation and user will be prompted to provide the
 # SQL server name and database name to complete the installation when trying to access the admin portal. 
-WORKDIR /inetpub
-COPY /update .
+#WORKDIR /inetpub
+#COPY /update .

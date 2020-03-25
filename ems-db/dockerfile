@@ -6,6 +6,6 @@ ENV ACCEPT_EULA="Y"
 ENV SA_PASSWORD="Pass@word1"
 
 # Copy pre-configured Kentico EMS SQL DB
-FROM db AS final
-WORKDIR /
-COPY ["/update", "c:/Program Files/Microsoft SQL Server/MSSQL14.SQLEXPRESS/MSSQL/data/"]
+#FROM db AS final
+#WORKDIR /
+#COPY ["/update", "c:/Program Files/Microsoft SQL Server/MSSQL14.SQLEXPRESS/MSSQL/data/"]
