@@ -1,7 +1,8 @@
 This repo provides a docker-compose file configured to create a local Kentico 12 environment. 
 
 ## Pre-requisites
-- Download and install [Docker Desktop](https://docs.docker.com/get-started).
+- Download and install [Docker Desktop](https://docs.docker.com/get-started). 
+_Minimum Docker version required: 17.09_
 - Clone, or copy, the [Docker compose file](https://github.com/OnyxPrime/kentico-ems-docker-poc/blob/master/docker-compose.yml) we'll use to create the Kentico EMS environment.
 
 ## Getting Started
